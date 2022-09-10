@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket tester</title>
+    <link rel="stylesheet" href="public/common.css">
+</head>
+<body>
+
+    <header>
+        <h2>Chat room</h2>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+            </ul>
+            <div class="logged-in-as">
+                <label>Logged in as</label> <div class="userName"><a href="/logout">{{index . "userName"}}</a></div>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div id="output"></div>
+        <div id="input">
+            <input type="text" id="messageInput" >
+            <input type="button" id="sendInput" value="Send" onclick="sendMessage();" />
+        </div>
+    </section>
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script>
+        let loc = window.location;
+        let uri = 'ws:';
+
+        if (loc.protocol === 'https:') {
+            uri = 'wss:';
+        }
+        uri += '//' + loc.host;
+        uri += loc.pathname + 'ws' ;
+
+        ws = new WebSocket(uri)
+
+        ws.onopen = () => {
+            write("Connected");
+        }
+
+        ws.onmessage = (evt) => {
+            writeEvent(JSON.parse(evt.data));
+        }
+
+        ws.onclose = () => {
+            write("Connection closed.");
+        }
+
+        const write = (msg) => {
+            addElement('message', msg);
+        }
+
+        const writeEvent = (data) => {
+
+            console.log('data = ', data);
+
+            // add a new row, by adding each cell in reverse order
+            // (since we add all cells at the start of the container).
+            addElement('msg', data.msg);
+            addElement('sender', data.sender.name);
+            addElement('timestamp', data.timestamp);
+        }
+
+        const addElement = (className, text) => {
+            let out = document.getElementById('output');
+            let divElement = document.createElement('div');
+            divElement.className = className;
+            divElement.innerText = text;
+            out.insertAdjacentElement('afterbegin', divElement)
+        }
+
+        const sendMessage = () =>  {
+            const msg = document.getElementById("messageInput").value;
+            ws.send(JSON.stringify({ 'body': msg }))
+        }
+    </script>
+
+</body>
+</html>

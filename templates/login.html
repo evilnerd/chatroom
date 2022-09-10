@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatroom - Login</title>
+    <link rel="stylesheet" href="public/common.css">
+</head>
+<body>
+    <header>
+      <h1>Login</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+      {{if index . "isLoggedIn" }}
+        <div>You are logged in as {{index . "userName"}}</div>
+            <a href="/logout">Logout</a>
+      {{else}}
+          <p>To log in to the chat room, you must first enter your name. This is the name the other people in the chat room will see.</p>
+      <form method="post" action="/login">
+        <label for="userNameTextBox">User name</label> <input type="text" id="userNameTextBox" name="userName" />
+        <input type="submit" value="Login" />
+      </form>
+      {{end}}
+    </section>
+    <footer>
+
+    </footer>
+</body>
+</html>

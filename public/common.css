@@ -1,0 +1,97 @@
+body {
+  font-family: SansSerif, Arial, Helvetica;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  color: darkolivegreen;
+}
+
+header {
+  background-color: #d2e0b9;
+  height: max-content;
+}
+header nav {
+  background-color: #999;
+  border-color: #b3b3b3;
+  border-width: 1px 0px;
+  border-style: solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+}
+header nav a {
+  text-decoration: none;
+  color: #292d62;
+  padding: 5px;
+  min-width: 5em;
+  height: 100%;
+}
+header nav a:hover {
+  background-color: #666666;
+  color: #d6d29d;
+}
+header nav .logged-in-as {
+  white-space: nowrap;
+  overflow: hidden;
+  width: max-content;
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 0;
+  padding: 0px;
+}
+header nav .logged-in-as label {
+  font-size: small;
+}
+header nav ul {
+  padding: 0px;
+  margin: 0px;
+  flex: 1 1;
+  list-style: none;
+  height: 3em;
+  align-items: center;
+  display: flex;
+}
+header nav ul li {
+  display: inline;
+}
+
+footer {
+  height: 1rem;
+  background-color: #d2e0b9;
+}
+
+section {
+  flex: auto;
+  height: 100%;
+  background-color: #eee;
+  border: 1px solid #aaa;
+}
+
+#output {
+  padding: 8px;
+  color: #3f4e22;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1.5em;
+  align-items: center;
+}
+
+.message {
+  color: #777;
+  grid-column: 1/4;
+}
+
+.timestamp {
+  color: #777;
+}
+
+.path {
+  font-family: Consolas, "Courier New";
+}
+
+/*# sourceMappingURL=common.css.map */

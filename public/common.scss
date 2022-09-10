@@ -1,0 +1,112 @@
+$headerColor: darkolivegreen;
+$headerBackground: lighten($headerColor, 50);
+$color2: #777;
+$textColor: #3f4e22;;
+$consoleBackground: #eee;
+$linkColor: #292d62;
+
+$navBackground: #999;
+
+body {
+  font-family: SansSerif, Arial, Helvetica;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  color: $headerColor;
+}
+
+header {
+  background-color: $headerBackground;
+  height: max-content;
+  nav {
+    background-color: $navBackground;
+    border-color: lighten($navBackground, 10);
+    border-width: 1px 0px;
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    a {
+      text-decoration: none;
+      color: $linkColor;
+      padding: 5px;
+      min-width: 5em;
+      height: 100%;
+    }
+    a:hover {
+        background-color: darken($navBackground, 20);
+        color: invert($linkColor, 100);
+      }
+    .logged-in-as {
+      white-space: nowrap;
+      overflow: hidden;
+      width: max-content;
+      height: 3em;
+
+      display: flex;
+      flex-direction: row;
+      align-items:center;
+      flex-grow: 0;
+      padding: 0px;
+
+      label {
+        font-size: small;
+      }
+      .userName {
+
+      }
+    }
+    ul {
+      padding: 0px;
+      margin: 0px;
+      flex: 1 1;
+      list-style: none;
+      height: 3em;
+      align-items: center;
+      display: flex;
+      li {
+        display: inline;
+      }
+    }
+  }
+}
+
+footer {
+  height: 1rem;
+  background-color: $headerBackground;
+}
+
+section {
+  flex: auto;
+  height: 100%;
+  background-color: $consoleBackground;
+  border: 1px solid #aaa;
+}
+
+#output {
+  padding: 8px;
+  color: $textColor;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1.5em ;
+  align-items: center;
+}
+
+.message {
+  color: $color2;
+  grid-column: 1/4;
+}
+
+.timestamp {
+  color: $color2;
+}
+
+.eventType {
+}
+
+.path {
+  font-family: Consolas, "Courier New";
+}
